@@ -50,14 +50,14 @@ public class BookController {
             return "addbook";
         }
 
-        // Book foundBook = bookService.findById( book.getBookCode() );
+        Book foundBook = bookService.findById( book.getBookCode() );
 
-        // if( foundBook != null )
-        // {
-        //     model.addAttribute( "book", book );
-        //     model.addAttribute( "error", "Book code must be unique!");
-        //     return "addbook";
-        // }
+        if( foundBook != null )
+        {
+            model.addAttribute( "book", book );
+            model.addAttribute( "error", "Book code must be unique!");
+            return "addbook";
+        }
 
         book.setCreatedAt( new Date() );
 
@@ -80,7 +80,7 @@ public class BookController {
         String msg = "";
 
         if( status > 0 ) msg = "Successfully Deleted!";
-        else msg = "Something went wrong!&?error=true"; 
+        else msg = "Something went wrong!&error=true"; 
 
         return "redirect:/books?msg="+msg;
     }
