@@ -2,5 +2,37 @@
 
     <navbar></navbar>
 
-    <h1>books</h1>
+    <table class="table w-50 table-striped mx-auto">
+        <thead class="text-center fw-bold">
+            <tr>
+                <td colspan="5">Books'</td>
+            </tr>
+            <tr>
+                <td>Code</td>
+                <td>Title</td>
+                <td>Author</td>
+                <td>Price</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let book of books">
+                <td>{{ book.bookCode }}</td>
+                <td>{{ book.bookTitle }}</td>
+                <td>{{ book.bookAuthor }}</td>
+                <td>{{ book.bookPrice }}</td>
+                <td class="d-flex gap-3">
+                    <a routerLink="/books/{{book.bookCode}}" class="btn btn-warning btn-sm">Update</a>
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+            <tr *ngIf="status.isBlank && !status.isFetching">
+                <td class="text-center" colspan="5">There is no book to show!</td>
+            </tr>
+            <tr *ngIf="status.isFetching">
+                <td class="text-center" colspan="5">Loading...</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

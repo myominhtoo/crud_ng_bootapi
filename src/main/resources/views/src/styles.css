@@ -2,3 +2,7 @@
 #nav{
     margin-top:100px;
 }
+
+button,a{
+    font-weight: bold !important;
+}
