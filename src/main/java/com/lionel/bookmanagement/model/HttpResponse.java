@@ -10,5 +10,6 @@ public class HttpResponse {
     private int httpStatusCode;
     private HttpStatus status;
     private String msg;
+    private boolean ok;
 
 }

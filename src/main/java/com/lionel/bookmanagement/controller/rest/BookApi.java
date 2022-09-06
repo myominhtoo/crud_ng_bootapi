@@ -44,12 +44,14 @@ public class BookApi {
             res.setHttpStatusCode( 208 );
             res.setStatus( HttpStatus.ALREADY_REPORTED);
             res.setMsg("Book Code must be unique!");
+            res.setOk(false);
         }
 
         if( bookService.save( book ) > 0 ){
             res.setHttpStatusCode( 201 );
             res.setStatus( HttpStatus.OK );
             res.setMsg("Successfully Created!");
+            res.setOk(true);
         }
 
         return  res;
@@ -63,6 +65,13 @@ public class BookApi {
             res.setHttpStatusCode( 202 );
             res.setStatus( HttpStatus.OK );
             res.setMsg( "Successfully Deleted!");
+            res.setOk( true );
+        }
+        else{
+            res.setHttpStatusCode( 400 );
+            res.setStatus( HttpStatus.BAD_REQUEST );
+            res.setMsg( "Delete Failed!");
+            res.setOk( false );
         }
 
         return res;
@@ -78,6 +87,13 @@ public class BookApi {
             res.setHttpStatusCode( 202 );
             res.setStatus( HttpStatus.OK );
             res.setMsg("Successfully Updated!");
+            res.setOk(true);
+        }
+        else{
+            res.setHttpStatusCode( 400 );
+            res.setStatus( HttpStatus.BAD_REQUEST );
+            res.setMsg("Update Failed");
+            res.setOk( false );
         }
 
         return res;
