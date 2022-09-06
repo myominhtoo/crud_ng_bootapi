@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <th:block th:insert="/fragments/header :: bootstrap-css"></th:block>
+</head>
+<body>
+    
+    <th:block th:insert="/fragments/header :: header"></th:block>
+
+    <br/>
+    
+    <div class="card p-5 w-50 mx-auto">
+        <h3 class="h5 text-center text-danger" th:unless="${ error == null }" th:text="${error}"></h3>
+        <form action="#" th:action="@{/books/new}" method="post" class="form" th:object="${book}">
+            <div class="form-group my-2">
+                <label for="" class="form-label">Book Code</label>
+                <input type="text" th:field="*{bookCode}" class="form-control" placeholder="Enter book code " />
+                <span th:if="${#fields.hasErrors('bookCode')}" th:text="${#fields.errors('bookCode')}" class="error"></span>
+            </div>
+    
+            <div class="form-group my-2">
+                <label for="" class="form-label">Book Title</label>
+                <input type="text" th:field="*{bookTitle}" class="form-control" placeholder="Enter book title " />
+                <span th:if="${#fields.hasErrors('bookTitle')}" th:text="${#fields.errors('bookTitle')}" class="error"></span>
+            </div>
+    
+            <div class="form-group my-2">
+                <label for="" class="form-label">Book Author</label>
+                <input type="text" th:field="*{bookAuthor}" class="form-control" placeholder="Enter book author" />
+                <span th:if="${#fields.hasErrors('bookAuthor')}" th:text="${#fields.errors('bookAuthor')}" class="error"></span>
+            </div>
+    
+            <div class="form-group my-2">
+                <label for="" class="form-label">Book Price</label>
+                <input type="number" th:field="*{bookPrice}" class="form-control" placeholder="Enter book price " />
+                <span th:if="${#fields.hasErrors('bookPrice')}" th:text="${#fields.errors('bookPrice')}" class="error"></span>
+            </div>
+    
+            <div class="form-group">
+                <button class="btn btn-primary w-100">Add</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

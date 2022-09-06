@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <th:block th:insert="/fragments/header :: bootstrap-css"></th:block>
+</head>
+<body>
+
+    <h1 th:if="${ param.error != null }" th:text="${param.msg}" class="text-danger h3 my-4 text-center "></h1>
+    <h1 th:if="${ param.error == null }" th:text="${param.msg}" class="text-success h3 my-4 text-center"></h1>
+
+    <th:block th:insert="/fragments/header :: header"></th:block>
+
+    <table class="w-50 mx-auto my-2 table table-striped table-bordered">
+        <thead>
+            <tr class="text-center">
+                <td colspan="5" class="h3">Books'</td>
+            </tr>
+            <tr>
+                <td>Code</td>
+                <td>Title</td>
+                <td>Author</td>
+                <td>Price</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${books != null && !books.isEmpty()}" th:each=" book : ${books}" >
+                <td>[[${book.bookCode}]]</td>
+                <td>[[${book.bookTitle}]]</td>
+                <td>[[${book.bookAuthor}]]</td>
+                <td>[[${book.bookPrice}]]</td>
+                <td class="d-flex gap-1"><a th:href="@{/books/{id}(id=${book.bookCode})}" class="btn btn-warning">Update</a><a th:href="@{/books/{id}/delete(id=${book.bookCode})}" onclick="return confirm('Are you sure to delete?')" class="btn btn btn-danger">Delete</a></td>
+            </tr>
+            <tr th:if="${ books.isEmpty()}" class="text-center  fw-bold">
+                <td colspan="5">There is no book to show!</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
