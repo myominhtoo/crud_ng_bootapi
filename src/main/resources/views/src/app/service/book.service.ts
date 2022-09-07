@@ -26,12 +26,12 @@ export default class BookService {
         return this.httpClient.get<Book>(`${this.BASE_URL}/${bookCode}`);
     }
 
-    deleteBook( bookCode : string ) : Observable<Object> {
-        return this.httpClient.delete<Object>(`${this.BASE_URL}/${bookCode}`);
+    deleteBook( bookCode : string ) : Observable<HttpResponse> {
+        return this.httpClient.delete<HttpResponse>(`${this.BASE_URL}/books/${bookCode}`);
     }
 
-    updateBook( book : Book ) : Observable<Object> {
-        return this.httpClient.put<Object>(`${this.BASE_URL}/${book.bookCode}`, book );
+    updateBook( book : Book ) : Observable<HttpResponse> {
+        return this.httpClient.put<HttpResponse>(`${this.BASE_URL}/books/${book.bookCode}`, book );
     }
 
 }

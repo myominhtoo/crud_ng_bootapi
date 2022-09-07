@@ -2,10 +2,12 @@
 
     <navbar></navbar>
 
+    <h5 *ngIf="message.text != '' " class="h5 text-center my-1 {{ message.hasError ? 'text-danger' : 'text-success' }}">{{ message.text }}</h5>
+
     <table class="table w-50 table-striped mx-auto">
         <thead class="text-center fw-bold">
             <tr>
-                <td colspan="5">Books'</td>
+                <td colspan="5" class="h3">Books'</td>
             </tr>
             <tr>
                 <td>Code</td>
@@ -24,7 +26,7 @@
                 <td>{{ book.bookPrice }}</td>
                 <td class="d-flex gap-3">
                     <a routerLink="/books/{{book.bookCode}}" class="btn btn-warning btn-sm">Update</a>
-                    <button class="btn btn-danger btn-sm">Delete</button>
+                    <button (click)="handleDeleteBook(book.bookCode)" class="btn btn-danger btn-sm">{{ (status.isDeleting && book.bookCode == status.deleteTarget) ? "Deleting..." : "Delete" }}</button>
                 </td>
             </tr>
             <tr *ngIf="status.isBlank && !status.isFetching">

@@ -12,8 +12,15 @@ export default class BooksComponent implements OnInit {
     
     status  = {
         isFetching : false,
-        isBlank : false
+        isBlank : false,
+        isDeleting : false,
+        deleteTarget : "",
     } 
+
+    message = {
+        hasError : false,
+        text : "",
+    }
 
 
     constructor( private bookService : BookService ){}
@@ -21,6 +28,10 @@ export default class BooksComponent implements OnInit {
     ngOnInit() : void {
         this.status.isFetching = true;
 
+        this.handleGetBooks();
+    }
+
+    handleGetBooks() : void {
         this.bookService.getBooks().subscribe({
             next : ( datas ) => {
 
@@ -32,6 +43,28 @@ export default class BooksComponent implements OnInit {
             },
             error : ( e ) => console.error(e)
         })
+    }
+
+    handleDeleteBook( bookCode  : string ) : void {
+        if( confirm("Are you sure to delete?")){
+            this.status.isDeleting = true;
+            this.status.deleteTarget = bookCode;
+
+            this.bookService.deleteBook( bookCode )
+            .subscribe({
+                next : ( res ) => {
+                    this.status.isDeleting = false;
+
+                    this.message.hasError = !res.ok;
+                    this.message.text = res.msg;
+
+                    console.log( this.message )
+
+                    if( res.ok ) this.handleGetBooks();                   
+                },
+                error : ( e ) => console.error( e )
+            })
+        }
     }
 
 }
