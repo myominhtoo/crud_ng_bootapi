@@ -16,27 +16,11 @@ export default class AddBookComponent {
     book : Book = new Book();
     error = BookError;
 
-    private validate( target : string , value : string | number ) : void {
-
-        let key = target as BookErrorType;
-
-        target = target.charAt(0).toUpperCase() + target.substring(1);
-
-        if( value == "" || value == undefined ){
-            this.error[key] = { hasError : true , msg : `${target} must not be empty!` }
-        }else{
-            this.error[key] = { hasError : false , msg : '' };
-        }      
-
-    }
-
-
     handleAddBook( form : NgForm ) : void {
 
         for( let key of BookKeys ){
-
             let bookKey = key as keyof Book;//making each key from BookKeys to be type of Book
-            this.validate( key , this.book[bookKey]);
+            this.bookService.validate( key , this.book[bookKey]);
         }
 
         if( form.valid ){

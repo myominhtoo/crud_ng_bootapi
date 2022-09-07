@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import Book from "../model/Book";
+import error, { BookErrorType } from "../model/BookError";
 import HttpResponse from "../model/HttpResponse";
 
 
@@ -32,6 +33,19 @@ export default class BookService {
 
     updateBook( book : Book ) : Observable<HttpResponse> {
         return this.httpClient.put<HttpResponse>(`${this.BASE_URL}/books/${book.bookCode}`, book );
+    }
+
+    validate( target : string , value : string | number ) : void {
+
+        let key = target as BookErrorType;
+
+        target = target.charAt(0).toUpperCase() + target.substring(1);
+
+        if( value == "" || value == undefined ){
+            error[key] = { hasError : true , msg : `${target} must not be empty!` }
+        }else{
+            error[key] = { hasError : false , msg : '' };
+        }      
     }
 
 }
