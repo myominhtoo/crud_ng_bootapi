@@ -6,3 +6,9 @@
 button,a{
     font-weight: bold !important;
 }
+
+#error{
+    color:red;
+    font-size: 15px;
+    font-weight: bold;
+}

@@ -8,6 +8,7 @@ import BooksComponent from './components/books/books.component';
 import HomeComponent from './components/home/home.component';
 import UpdateBookComponent from './components/update-book/update-book.component';
 import NavBarComponent from './layouts/navbar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import NavBarComponent from './layouts/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

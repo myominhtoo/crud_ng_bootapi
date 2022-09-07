@@ -5,3 +5,10 @@ export default class Book{
     bookTitle! : string;
     bookPrice! : number;
 }
+
+export const BookKeys : string[] = [
+    "bookCode",
+    "bookAuthor",
+    "bookTitle",
+    "bookPrice"
+]

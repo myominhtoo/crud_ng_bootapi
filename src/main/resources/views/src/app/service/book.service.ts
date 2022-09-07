@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import Book from "../model/Book";
+import HttpResponse from "../model/HttpResponse";
 
 
 @Injectable({
@@ -17,8 +18,8 @@ export default class BookService {
         return this.httpClient.get<Book[]>(`${this.BASE_URL}/books`);
     }
 
-    addBook( book : Book ) : Observable<Object> {
-        return this.httpClient.post<Object>(`${this.BASE_URL}/books` , book );
+    addBook( book : Book ) : Observable<HttpResponse> {
+        return this.httpClient.post<HttpResponse>(`${this.BASE_URL}/books` , book );
     }
 
     getBook( bookCode : string ) : Observable<Book> {

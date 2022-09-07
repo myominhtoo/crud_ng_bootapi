@@ -47,6 +47,7 @@ public class BookApi {
             res.setOk(false);
         }
 
+
         if( bookService.save( book ) > 0 ){
             res.setHttpStatusCode( 201 );
             res.setStatus( HttpStatus.OK );
