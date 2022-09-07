@@ -2,5 +2,40 @@
 
     <navbar></navbar>
 
-    <h1>update book</h1>
+    <h3 *ngIf="status.hasError" class="h3 text-center my-1">{{ status.msg }}</h3>
+
+    <main class="w-50 mx-auto p-3">
+        <h3 class="h3 text-center">Update Book </h3>
+
+        <form  #bookUpdateForm="ngForm" (submit)="handleUpdateBook(bookUpdateForm)" class="form">
+            <div class="form-group my-2">
+                <label for="" class="form-label">Book Code</label>
+                <input [(ngModel)]="book.bookCode" name="bookCode" #bookCode="ngModel" type="text" class="form-control" placeholder="Enter book's code" required autofocus disabled >
+                <span *ngIf="error.bookCode.hasError" id="error">{{ error.bookCode.msg }}</span>
+            </div>
+    
+            <div class="form-group my-2">
+                <label for="" class="form-label">Book Title</label>
+                <input [(ngModel)]="book.bookTitle" name="bookTitle" #bookTitle="ngModel" type="text" class="form-control" placeholder="Enter book's title" required >
+                <span *ngIf="error.bookTitle.hasError" id="error">{{ error.bookTitle.msg }}</span>
+            </div>
+    
+            <div class="form-group my-2">
+                <label for="" class="form-label">Book Author</label>
+                <input [(ngModel)]="book.bookAuthor" name="bookAuthor" #bookAuthor="ngModel" type="text" class="form-control" placeholder="Enter book's author" required >
+                <span *ngIf="error.bookAuthor.hasError" id="error">{{ error.bookAuthor.msg }}</span>
+            </div>
+    
+            <div class="form-group my-2">
+                <label for="" class="form-label">Book Price</label>
+                <input [(ngModel)]="book.bookPrice" name="bookPrice" #bookPrice="ngModel" type="number" class="form-control" placeholder="Enter book's price" required >
+                <span *ngIf="error.bookPrice.hasError" id="error">{{ error.bookPrice.msg }}</span>
+            </div>
+    
+            <div class="form-group my-2">
+                <button class="btn btn-primary  w-100">Add</button>
+            </div>
+    
+        </form>
+    </main>
 </div>

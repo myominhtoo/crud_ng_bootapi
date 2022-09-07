@@ -24,7 +24,7 @@ export default class BookService {
     }
 
     getBook( bookCode : string ) : Observable<Book> {
-        return this.httpClient.get<Book>(`${this.BASE_URL}/${bookCode}`);
+        return this.httpClient.get<Book>(`${this.BASE_URL}/books/${bookCode}`);
     }
 
     deleteBook( bookCode : string ) : Observable<HttpResponse> {
